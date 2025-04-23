@@ -1,3 +1,15 @@
+/**
+ * AJAX 请求工具类
+ * 提供基于 XMLHttpRequest 的 HTTP 请求方法
+ */
+
+/**
+ * 发送 AJAX 请求
+ * @param url 请求地址
+ * @param method 请求方法，默认为 'GET'
+ * @param data 请求数据，仅在 POST 请求时使用
+ * @returns Promise 对象，包含响应数据
+ */
 function ajax(url: string, method: string = 'GET', data: any = null): Promise<any> {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -25,3 +37,14 @@ function ajax(url: string, method: string = 'GET', data: any = null): Promise<an
         }
     });
 }
+
+// 测试用例
+// GET 请求
+ajax('https://api.example.com/data')
+    .then(response => console.log('GET response:', response))
+    .catch(error => console.error('GET error:', error));
+
+// POST 请求
+ajax('https://api.example.com/data', 'POST', { name: 'test', value: 123 })
+    .then(response => console.log('POST response:', response))
+    .catch(error => console.error('POST error:', error));
